@@ -1,0 +1,13 @@
+From: Harshula Jayasuriya <harshula@debian.org>
+Date: Wed, 01 Jan 2020 18:30:40 +1100
+Subject: do not add flags for required packages to pc file
+--- a/libotf.pc.in
++++ b/libotf.pc.in
+@@ -7,5 +7,5 @@
+ Description: OpenType font library
+ Version: @PACKAGE_VERSION@
+ Requires: freetype2
+-Libs: @FREETYPE_LD_FLAGS@ -L${libdir} -lotf
+-Cflags: @FREETYPE_INC@ -I${includedir}
++Libs: -L${libdir} -lotf
++Cflags: -I${includedir}

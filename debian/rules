@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+# Created by dh_make 2.201903
+# This file was modified by Harshula Jayasuriya.
+
+LIB_PKG = libotf0
+
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed -Wl,-z,defs
+
+
+%:
+	dh $@
+
+override_dh_strip:
+	dh_strip --dbgsym-migration='$(LIB_PKG)-dbg (<< 0.9.13-5)'

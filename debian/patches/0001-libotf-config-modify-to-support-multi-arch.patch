@@ -1,0 +1,24 @@
+# Modify libotif-config.in to support Multi-Arch
+--- a/libotf-config.in
++++ b/libotf-config.in
+@@ -23,18 +23,10 @@
+   echo "@PACKAGE_VERSION@";;
+ 
+ --libs)
+-  if test "@libdir@" != "/usr/lib"; then
+-    echo "@FREETYPE_LD_FLAGS@ -L@libdir@ -lotf"
+-  else
+-    echo "@FREETYPE_LD_FLAGS@ -lotf"
+-  fi;;
++  pkg-config libotf --libs;;
+ 
+ --cflags)
+-  if test "@includedir@" != "/usr/include"; then
+-    echo "@FREETYPE_INC@ -I@includedir@"
+-  else
+-    echo "@FREETYPE_INC@"
+-  fi;;
++  pkg-config libotf --cflags;;
+ 
+ *)
+     help
